@@ -8,10 +8,10 @@
 		<version>2.3.12.RELEASE</version>
 	</parent>
 	<groupId>com.jsr</groupId>
-	<artifactId>SpringBootH2</artifactId>
+	<artifactId>SpringBootMySQL</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<name>SpringBootH2</name>
-	<description>SpringBootH2</description>
+	<name>SpringBootMySQL</name>
+	<description>SpringBootMySQL</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -31,11 +31,14 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

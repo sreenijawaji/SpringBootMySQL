@@ -1,5 +1,7 @@
-package com.jsr.SpringBootH2.controller;
+package com.jsr.SpringBootMySQL.controller;
 
+import com.jsr.SpringBootMySQL.Entity.EmployeeInfo;
+import com.jsr.SpringBootMySQL.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,33 +23,33 @@ public class EmployeeController {
 
 
     @PostMapping("/addEmployee")
-    public Employee addEmployee(@RequestBody Employee Employee) {
-        return service.saveEmployee(Employee);
+    public EmployeeInfo addEmployee(@RequestBody EmployeeInfo employeeInfo) {
+        return service.saveEmployee(employeeInfo);
     }
 
     @PostMapping("/addEmployees")
-    public List<Employee> addEmployees(@RequestBody List<Employee> Employees) {
-        return service.saveEmployees(Employees);
+    public List<EmployeeInfo> addEmployees(@RequestBody List<EmployeeInfo> employeeInfos) {
+        return service.saveEmployees(employeeInfos);
     }
 
     @GetMapping("/Employees")
-    public List<Employee> findAllEmployees() {
+    public List<EmployeeInfo> findAllEmployees() {
         return service.getEmployees();
     }
 
     @GetMapping("/EmployeeById/{id}")
-    public Employee findEmployeeById(@PathVariable int id) {
+    public EmployeeInfo findEmployeeById(@PathVariable int id) {
         return service.getEmployeeById(id);
     }
 
-    @GetMapping("/Employee/{name}")
-    public Employee findEmployeeByName(@PathVariable String name) {
+    @GetMapping("/EmployeeInfo/{name}")
+    public EmployeeInfo findEmployeeByName(@PathVariable String name) {
         return service.getEmployeeByName(name);
     }
 
     @PutMapping("/update")
-    public Employee updateEmployee(@RequestBody Employee Employee) {
-        return service.updateEmployee(Employee);
+    public EmployeeInfo updateEmployee(@RequestBody EmployeeInfo EmployeeInfo) {
+        return service.updateEmployee(EmployeeInfo);
     }
 
     @DeleteMapping("/delete/{id}")
