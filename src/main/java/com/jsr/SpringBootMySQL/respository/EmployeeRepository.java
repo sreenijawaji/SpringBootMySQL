@@ -1,13 +1,12 @@
 package com.jsr.SpringBootMySQL.respository;
 
-import com.jsr.SpringBootMySQL.Entity.EmployeeInfo;
+import com.jsr.SpringBootMySQL.Entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeInfo, Integer> {
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
+
 
 
 }

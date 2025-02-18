@@ -1,6 +1,6 @@
 package com.jsr.SpringBootMySQL.service;
 
-import com.jsr.SpringBootMySQL.Entity.EmployeeInfo;
+import com.jsr.SpringBootMySQL.Entity.EmployeeEntity;
 import com.jsr.SpringBootMySQL.respository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,36 +13,43 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
-    public EmployeeInfo saveEmployee(EmployeeInfo employeeInfo) {
-        return repository.save(employeeInfo);
+    public EmployeeEntity saveEmployee(EmployeeEntity employeeEntity) {
+        return repository.save(employeeEntity);
     }
 
-    public List<EmployeeInfo> saveEmployees(List<EmployeeInfo> employeeInfos) {
+    public List<EmployeeEntity> saveEmployees(List<EmployeeEntity> employeeEntitys) {
         return null;
     }
 
-    public List<EmployeeInfo> getEmployees() {
+    public List<EmployeeEntity> getEmployees() {
         return repository.findAll();
     }
 
-    public EmployeeInfo getEmployeeById(int id) {
+    public EmployeeEntity getEmployeeById(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public EmployeeInfo getEmployeeByName(String name) {
+    public EmployeeEntity getEmployeeByName(String name) {
         return null;//repository.findByFirstName(name);
     }
 
     public String deleteEmployee(int id) {
         repository.deleteById(id);
-        return "EmployeeInfo removed !! " + id;
+        return "EmployeeEntity removed !! " + id;
     }
 
-    public EmployeeInfo updateEmployee(EmployeeInfo employeeInfo) {
-        EmployeeInfo existingEmployeeInfo = repository.findById(employeeInfo.getId()).orElse(null);
-        existingEmployeeInfo.setFirstName(employeeInfo.getFirstName());
-        existingEmployeeInfo.setSalary(employeeInfo.getSalary());
-        return repository.save(existingEmployeeInfo);
+    public EmployeeEntity updateEmployee(EmployeeEntity employeeEntity) {
+        EmployeeEntity existingEmployeeEntity = repository.findById(employeeEntity.getId()).orElse(null);
+        existingEmployeeEntity.setFirstName(employeeEntity.getFirstName());
+        existingEmployeeEntity.setSalary(employeeEntity.getSalary());
+        return repository.save(existingEmployeeEntity);
+    }
+
+    public EmployeeEntity patchEmployee(EmployeeEntity employeeEntity) {
+        EmployeeEntity existingEmployeeEntity = repository.findById(employeeEntity.getId()).orElse(null);
+        existingEmployeeEntity.setFirstName(employeeEntity.getFirstName());
+        existingEmployeeEntity.setSalary(employeeEntity.getSalary());
+        return repository.save(existingEmployeeEntity) ;
     }
 }
 

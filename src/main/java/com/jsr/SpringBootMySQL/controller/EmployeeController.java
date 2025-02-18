@@ -1,6 +1,6 @@
 package com.jsr.SpringBootMySQL.controller;
 
-import com.jsr.SpringBootMySQL.Entity.EmployeeInfo;
+import com.jsr.SpringBootMySQL.Entity.EmployeeEntity;
 import com.jsr.SpringBootMySQL.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee/api")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 
@@ -23,38 +23,51 @@ public class EmployeeController {
 
 
     @PostMapping("/addEmployee")
-    public EmployeeInfo addEmployee(@RequestBody EmployeeInfo employeeInfo) {
-        return service.saveEmployee(employeeInfo);
+    public EmployeeEntity addEmployee(@RequestBody EmployeeEntity employeeEntity) {
+        return service.saveEmployee(employeeEntity);
     }
 
     @PostMapping("/addEmployees")
-    public List<EmployeeInfo> addEmployees(@RequestBody List<EmployeeInfo> employeeInfos) {
-        return service.saveEmployees(employeeInfos);
+    public List<EmployeeEntity> addEmployees(@RequestBody List<EmployeeEntity> employeeEntitys) {
+        return service.saveEmployees(employeeEntitys);
     }
 
     @GetMapping("/Employees")
-    public List<EmployeeInfo> findAllEmployees() {
+    public List<EmployeeEntity> findAllEmployees() {
+        return service.getEmployees();
+    }
+
+    @GetMapping("/EmployeesByRequestBody")
+    public List<EmployeeEntity> getAllEmployees(@RequestBody EmployeeEntity employeeEntity) {
+
         return service.getEmployees();
     }
 
     @GetMapping("/EmployeeById/{id}")
-    public EmployeeInfo findEmployeeById(@PathVariable int id) {
+    public EmployeeEntity findEmployeeById(@PathVariable int id) {
         return service.getEmployeeById(id);
     }
 
-    @GetMapping("/EmployeeInfo/{name}")
-    public EmployeeInfo findEmployeeByName(@PathVariable String name) {
+    @GetMapping("/EmployeeEntity/{name}")
+    public EmployeeEntity findEmployeeByName(@PathVariable String name) {
         return service.getEmployeeByName(name);
     }
 
     @PutMapping("/update")
-    public EmployeeInfo updateEmployee(@RequestBody EmployeeInfo EmployeeInfo) {
-        return service.updateEmployee(EmployeeInfo);
+    public EmployeeEntity updateEmployee(@RequestBody EmployeeEntity EmployeeEntity) {
+        return service.updateEmployee(EmployeeEntity);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id) {
         return service.deleteEmployee(id);
     }
+
+    @PatchMapping("/patch")
+    public EmployeeEntity patchEmployee(@RequestBody EmployeeEntity EmployeeEntity) {
+        return service.patchEmployee(EmployeeEntity);
+    }
+
+
 
 }
